@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'phonesite';
+  title = 'PhoneSite';
+  phone = {
+    name: 'Iphone 13 mini',
+    brand: 'Apple',
+    screen: 5.42,
+    price: 809
+  };
 }
