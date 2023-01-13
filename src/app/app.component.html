@@ -2,7 +2,22 @@
   {{title}}
 </h1>
 
-<h2>{{phone.brand}} {{phone.name}}</h2>
+Móviles:
+<ul>
+  <li *ngFor="let phone of phones; let i = index">
+    <h1 appHighlight>ID: {{i}}</h1>
+    <h2 [style]="{'font-size': phone.price >= 700 ? '1.2em' : '1.5em' }">{{phone.brand}} {{phone.name}}</h2>
 
-<p>Pantalla: {{phone.screen}}</p>
-<p>Precio: {{phone.price}}€</p>
+    <ng-container *ngIf="phone.screen">
+      <p>Pantalla: {{phone.screen}}</p>
+      <p>Tipo pantalla: {{phone.screen > 6.4 ? 'Phablet' : 'Móvil'}}</p>
+    </ng-container>
+
+    <p [ngClass]="{'grey': !phone.offer, 'offer': phone.offer }">Precio: {{phone.price}}€ <b *ngIf="phone.offer">¡Oferta!</b></p>
+
+    <p [hidden]="phone.inStock">Disponible</p>
+    <p [hidden]="!phone.inStock">Sin stock</p>
+
+    <img [src]="'assets/phones/'+ phone.image">
+  </li>
+</ul>
